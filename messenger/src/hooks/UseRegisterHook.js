@@ -7,6 +7,7 @@ import {
   useWeb3ModalProvider,
 } from "@web3modal/ethers/react";
 import nameServiceABI from "../constants/ABIs/nameServiceABI.json";
+import { toast } from "react-toastify";
 
 const UseRegisterHook = (name) => {
 
@@ -36,10 +37,10 @@ const UseRegisterHook = (name) => {
         const registerReceipt = await register.wait();
 
         if (registerReceipt.status) {
-            return console.log("registered");
+            return toast("ENS created");
         }
 
-        return console.log("registration failed")
+        return toast("ENS creation failed");
     
 
 
