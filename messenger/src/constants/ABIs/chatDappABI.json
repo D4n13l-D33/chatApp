@@ -1,0 +1,106 @@
+[
+{
+    "type": "constructor",
+    "inputs": [
+        {
+            "name": "_ens",
+            "type": "address",
+            "internalType": "address"
+        }
+    ],
+    "stateMutability": "nonpayable"
+},
+{
+    "type": "function",
+    "name": "createAccount",
+    "inputs": [
+        {
+            "name": "_nickname",
+            "type": "string",
+            "internalType": "string"
+        }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+},
+{
+    "type": "function",
+    "name": "getAddressfromEns",
+    "inputs": [
+        {
+            "name": "_nickname",
+            "type": "string",
+            "internalType": "string"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "nickaddress_",
+            "type": "address",
+            "internalType": "address"
+        }
+    ],
+    "stateMutability": "view"
+},
+{
+    "type": "function",
+    "name": "getReceivedMessages",
+    "inputs": [
+        {
+            "name": "_receiver",
+            "type": "string",
+            "internalType": "string"
+        },
+        {
+            "name": "index",
+            "type": "uint256",
+            "internalType": "uint256"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "message",
+            "type": "string",
+            "internalType": "string"
+        }
+    ],
+    "stateMutability": "view"
+},
+{
+    "type": "function",
+    "name": "registeredUsers",
+    "inputs": [
+        {
+            "name": "",
+            "type": "address",
+            "internalType": "address"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+        }
+    ],
+    "stateMutability": "view"
+},
+{
+    "type": "function",
+    "name": "sendMessages",
+    "inputs": [
+        {
+            "name": "_receiverNick",
+            "type": "string",
+            "internalType": "string"
+        },
+        {
+            "name": "_message",
+            "type": "string",
+            "internalType": "string"
+        }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+}
+]
