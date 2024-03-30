@@ -1,8 +1,16 @@
 import { Box, Card, Button } from "@radix-ui/themes";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import UseRegisterHook from "../hooks/UseRegisterHook.js";
 import { toast } from 'react-toastify';
+import { isSupportedChain } from "../utils/index.js";
+import { readOnlyProvider } from "../constants/providers.js";
+import "../constants/ABIs/chatDappABI.json";
+import { useWeb3ModalAccount, useWeb3ModalProvider } from "@web3modal/ethers/react";
+
 const Register = () => {
+    const { chainId } = useWeb3ModalAccount();
+    const { walletProvider } = useWeb3ModalProvider();
+
     const [selectedFile, setSelectedFile] = useState();
     const [name, setName] = useState("");
     const [image, setImage] = useState("/src/assets/user-avatar.png");
@@ -15,6 +23,25 @@ const Register = () => {
     // const handleLogin = UseLoginHook(name);
 
     console.log(image)
+
+    useCallback(async () => {
+        if (!isSupportedChain(chainId)) return console.error("Wrong network");
+        const readOnlyProviders = readOnlyProvider(walletProvider);
+        const userAddress = readOnlyProviders.address;
+        console.log(userAddress);
+        
+        const chatDapp = new ethers.Contract(
+          import.meta.env.VITE_CHAT_DAPP_CONTRACT_ADDRESS,
+          chatDappABI,
+            readOnlyProviders
+        );
+        console.log("connected");
+
+        const userInfo = await chatDapp.registeredUsers(userAddress);
+
+        console.log("User info:", userInfo);
+    
+  }, [userAddress,chainId, walletProvider]);
 
     const handleRegistration = async () => {
         try {
